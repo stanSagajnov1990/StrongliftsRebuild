@@ -2,6 +2,7 @@ package com.stanislav.tabswithfragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -50,11 +51,13 @@ public class MainActivity extends AppCompatActivity implements
         tabHost = (TabHost) findViewById(android.R.id.tabhost);
         tabHost.setup();
 
-        String[] tabNames = {"Tab1", "Tab2", "Tab3", "Tab4", "Tab5"};
+        Resources res = getResources();
+        String[] tabNames = {"1", "2", "3", "4", "5"};
         for (int i = 0; i < tabNames.length; i++) {
             TabHost.TabSpec tabSpec;
             tabSpec = tabHost.newTabSpec(tabNames[i]);
             tabSpec.setIndicator(tabNames[i]);
+            tabSpec.setIndicator("", res.getDrawable(R.drawable.ic_guidebook));
             tabSpec.setContent(new FakeContent(getApplicationContext()));
             tabHost.addTab(tabSpec);
         }
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements
         myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), listFragments);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(myFragmentPagerAdapter);
-        viewPager.setOnPageChangeListener(this);
+        viewPager.addOnPageChangeListener(this);
 
         onRestart();
     }
