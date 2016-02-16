@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.stanislav.tabswithfragment.MainActivity">
+
+    <item
+        android:id="@+id/menu_item_new_crime"
+        android:icon="@drawable/ic_menu_signin"
+        android:title="@string/action_signin"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_unlockPP"
+        android:orderInCategory="100"
+        android:title="@string/action_unlockPP"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:title="@string/action_help"
+        app:showAsAction="never" />
+</menu>
