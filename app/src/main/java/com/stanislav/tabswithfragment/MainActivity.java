@@ -1,30 +1,21 @@
 package com.stanislav.tabswithfragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
+import com.stanislav.adapters.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.TabLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.HorizontalScrollView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
-import android.widget.TabHost.TabContentFactory;
 
 import com.stanislav.adapters.MyFragmentPagerAdapter;
-import com.stanislav.fragments.Fragment1;
-import com.stanislav.fragments.Fragment2;
-import com.stanislav.fragments.Fragment3;
-import com.stanislav.fragments.Fragment4;
-import com.stanislav.fragments.Fragment5;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -35,7 +26,85 @@ public class MainActivity extends AppCompatActivity implements
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
     int i = 0;
 
+
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setBackgroundColor(0x000000);
+
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_clock));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_diagram));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_calender));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_playbut));
+
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                switch (tab.getPosition()) {
+                    case 0:
+                        tab.setIcon(R.drawable.ic_home_selected);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.ic_clock_selected);
+                        break;
+                    case 2:
+                        tab.setIcon(R.drawable.ic_diagram_selected);
+                        break;
+                    case 3:
+                        tab.setIcon(R.drawable.ic_calender_selected);
+                        break;
+                    case 4:
+                        tab.setIcon(R.drawable.ic_playbut_selected);
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tab.setIcon(R.drawable.ic_home);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.ic_clock);
+                        break;
+                    case 2:
+                        tab.setIcon(R.drawable.ic_diagram);
+                        break;
+                    case 3:
+                        tab.setIcon(R.drawable.ic_calender);
+                        break;
+                    case 4:
+                        tab.setIcon(R.drawable.ic_playbut);
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+    }
+
+
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -96,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements
         viewPager.addOnPageChangeListener(this);
 
         onRestart();
-    }
+    } */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +178,9 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         if (id == R.id.action_settings){
-            return true;
+            //return true;
+            Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(i);
         } else if(id == R.id.action_help){
             Intent i = new Intent(MainActivity.this, HelpActivity.class);
             startActivity(i);
@@ -135,14 +206,14 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onTabChanged(String tabId) {
-        int pos = this.tabHost.getCurrentTab();
+        /*int pos = this.tabHost.getCurrentTab();
         this.viewPager.setCurrentItem(pos);
 
         HorizontalScrollView hScrollView = (HorizontalScrollView) findViewById(R.id.h_scroll_view);
         View tabView = tabHost.getCurrentTabView();
         int scrollPos = tabView.getLeft()
                 - (hScrollView.getWidth() - tabView.getWidth()) / 2;
-        hScrollView.smoothScrollTo(scrollPos, 0);
+        hScrollView.smoothScrollTo(scrollPos, 0);*/
     }
 
 }
