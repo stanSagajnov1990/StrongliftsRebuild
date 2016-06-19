@@ -10,12 +10,12 @@ import com.stanislav.tabswithfragment.Workout;
 /**
  * Created by Stanislav on 19.06.2016.
  */
-public class CrimeBaseHelper extends SQLiteOpenHelper {
+public class SLBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "workoutBase.db";
 
-    public CrimeBaseHelper(Context context){
+    public SLBaseHelper(Context context){
         super(context, DATABASE_NAME, null, VERSION);
     }
 
