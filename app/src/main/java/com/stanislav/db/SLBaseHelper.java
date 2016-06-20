@@ -5,7 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.stanislav.db.SLDbSchema.WorkoutTable;
+import com.stanislav.db.SLDbSchema.ExerciseTable;
+
 import com.stanislav.tabswithfragment.Workout;
+
+import java.util.UUID;
 
 /**
  * Created by Stanislav on 19.06.2016.
@@ -26,9 +30,34 @@ public class SLBaseHelper extends SQLiteOpenHelper {
                     " _id integer primary key autoincrement, " +
                     WorkoutTable.Cols.UUID + ", " +
                     WorkoutTable.Cols.DATE + ", " +
-                    WorkoutTable.Cols.SQUAT_WEIGHT +
+                    WorkoutTable.Cols.BODY_WEIGHT + " NUMERIC, " +
+                    WorkoutTable.Cols.FAILED +
                     ")"
         );
+        db.execSQL("create table " + ExerciseTable.NAME+ "(" +
+                " _id integer primary key autoincrement, " +
+                ExerciseTable.Cols.UUID + ", " +
+                ExerciseTable.Cols.TYPE + ", " +
+                ExerciseTable.Cols.WEIGHT + " NUMERIC, " +
+                ExerciseTable.Cols.FIRST + ", " +
+                ExerciseTable.Cols.SECOND + ", " +
+                ExerciseTable.Cols.THIRD + ", " +
+                ExerciseTable.Cols.FOURTH + ", " +
+                ExerciseTable.Cols.FIFTH + ", " +
+                ExerciseTable.Cols.WORKOUT_FK+ ", " +
+                "FOREIGN KEY(" + ExerciseTable.Cols.WORKOUT_FK + ") REFERENCES workouts(_id)"+
+                ")"
+        );
+        UUID uuid = UUID.randomUUID();
+        db.execSQL("insert into "+WorkoutTable.NAME +" values(NULL, ?, CURRENT_DATE, 98, 0)", new Object[]{ uuid.toString() });
+        Object[] argsForExercise = new Object[2];
+        argsForExercise[0] = uuid.toString();
+        argsForExercise[1] = 1;
+        db.execSQL("insert into "+ExerciseTable.NAME+ " values(NULL, ? , 'SQ', 47.5, 5, 5, 5, 5, 5, ?)", argsForExercise);
+        argsForExercise[1] = 1;
+        db.execSQL("insert into "+ExerciseTable.NAME+ " values(NULL, ? , 'BP', 77.5, 5, 5, 5, 5, 5, ?)", argsForExercise);
+        argsForExercise[1] = 1;
+        db.execSQL("insert into "+ExerciseTable.NAME+ " values(NULL, ? , 'ROW', 70, 5, 5, 5, 5, 5, ?)", argsForExercise);
     }
 
     @Override

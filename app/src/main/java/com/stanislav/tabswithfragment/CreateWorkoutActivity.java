@@ -24,7 +24,7 @@ public class CreateWorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_workout);
 
         workout = new Workout();
-        workout.setSquatWeight("50");
+        workout.setBodyWeight("50");
 
         Button saveButton = (Button) findViewById(R.id.button_save);
         saveButton.setOnClickListener(new View.OnClickListener() {

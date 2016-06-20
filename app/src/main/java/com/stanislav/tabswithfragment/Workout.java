@@ -1,6 +1,7 @@
 package com.stanislav.tabswithfragment;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -10,23 +11,43 @@ public class Workout {
 
     private UUID mId;
     private Date mDate;
-    private String mSquatWeight;
+    private String mBodyWeight;
+    private List<Exercise> mExercises;
 
-    public Workout() { this(UUID.randomUUID());}
+    public Workout() {
+        this(UUID.randomUUID());
+    }
 
     public Workout(UUID id) {
         mId = id;
         mDate = new Date();
     }
 
-    public UUID getId() { return mId; }
+    public UUID getId() {
+        return mId;
+    }
 
-    public Date getDate() { return mDate; }
+    public Date getDate() {
+        return mDate;
+    }
 
-    public void setDate(Date date) { mDate = date; }
+    public void setDate(Date date) {
+        mDate = date;
+    }
 
-    public String getSquatWeight() { return mSquatWeight; }
+    public String getBodyWeight() {
+        return mBodyWeight;
+    }
 
-    public void setSquatWeight(String squatWeight) { mSquatWeight = squatWeight; }
+    public void setBodyWeight(String bodyWeight) {
+        mBodyWeight = bodyWeight;
+    }
 
+    public List<Exercise> getExercises(){
+        return mExercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        mExercises = exercises;
+    }
 }

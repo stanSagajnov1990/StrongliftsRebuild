@@ -18,6 +18,8 @@ import com.stanislav.tabswithfragment.MainActivity;
 import com.stanislav.tabswithfragment.R;
 import com.stanislav.tabswithfragment.Workout;
 
+import java.util.Locale;
+
 public class Fragment1 extends Fragment {
 
     private static final String TAG = "Fragment1";
@@ -43,7 +45,9 @@ public class Fragment1 extends Fragment {
         Workout workout = LiftingLab.get(getActivity()).getLatestWorkout();
         Log.i(TAG, "onCreateView");
         TextView tvSQNumber = (TextView) v.findViewById(R.id.textViewSQNumber);
-        tvSQNumber.setText(workout.getSquatWeight());
+
+        String outputForSQ = String.format(Locale.US, "5x5 %.1fkg",workout.getExercises().get(0).getWeight());
+        tvSQNumber.setText(outputForSQ);
 
         return v;
     }
