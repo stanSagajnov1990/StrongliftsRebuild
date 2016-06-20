@@ -45,9 +45,15 @@ public class Fragment1 extends Fragment {
         Workout workout = LiftingLab.get(getActivity()).getLatestWorkout();
         Log.i(TAG, "onCreateView");
         TextView tvSQNumber = (TextView) v.findViewById(R.id.textViewSQNumber);
+        TextView tvBPNumber = (TextView) v.findViewById(R.id.textViewBPNumber);
+        TextView tvROWNumber = (TextView) v.findViewById(R.id.textViewROWNumber);
 
         String outputForSQ = String.format(Locale.US, "5x5 %.1fkg",workout.getExercises().get(0).getWeight());
+        String outputForBP = String.format(Locale.US, "5x5 %.1fkg",workout.getExercises().get(1).getWeight());
+        String outputForROW = String.format(Locale.US, "5x5 %.1fkg",workout.getExercises().get(2).getWeight());
         tvSQNumber.setText(outputForSQ);
+        tvBPNumber.setText(outputForBP);
+        tvROWNumber.setText(outputForROW);
 
         return v;
     }

@@ -24,6 +24,7 @@
             android:layout_margin="10dp"
             android:layout_weight="0.45"
             android:background="@drawable/myrect"
+            android:elevation="2dp"
             android:orientation="vertical">
 
             <TextView
@@ -83,6 +84,28 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewROW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="ROW"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    />
+
+                <TextView
+                    android:id="@+id/textViewROWNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:text="5x5 77.5kg"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -91,6 +114,7 @@
             android:layout_margin="10dp"
             android:layout_weight="0.45"
             android:background="@drawable/myrect"
+            android:elevation="2dp"
             android:orientation="vertical">
 
             <TextView
