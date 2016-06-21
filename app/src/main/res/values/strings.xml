@@ -12,9 +12,11 @@
     <string name="et_stronglifts_title">StrongLifts 5x5 Guide</string>
     <string name="et_stronglifts_text">For more info on how to get stronger, build muscle or lose weight, check out our guide.</string>
     <string name="et_copyright">Copyright © 2007-2016 StrongLifts\nAll Rights Reserved - v2.1.17</string>
-    <string name="b_finish">FINISH</string>
     <string name="action_deleteWorkout">Delete Workout</string>
     <string name="action_share">Share</string>
+    <string name="b_finish">FINISH</string>
+    <string name="b_edit_exercises">EDIT EXERCISES</string>
+    <string name="tv_body_weight">Body Weight</string>
 
 
 </resources>
