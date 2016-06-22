@@ -2,6 +2,7 @@ package com.stanislav.tabswithfragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,14 +47,25 @@ public class CreateWorkoutActivity extends AppCompatActivity {
         });
 
         editText.setOnTouchListener(new View.OnTouchListener() {
+
+            private Rect rect = new Rect();
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         v.setBackgroundDrawable(getResources().getDrawable(R.drawable.edt_bg_selected));
+                        rect = new Rect(v.getLeft() - 40, v.getTop() - 20, v.getRight() + 40 , v.getBottom() + 20);
+                        //v.getHitRect(rect);
+                        //v.getGlobalVisibleRect(rect);
                         break;
                     case MotionEvent.ACTION_UP:
                         v.setBackgroundDrawable(getResources().getDrawable(R.drawable.edt_bg_normal));
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if(!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())){
+                            v.setBackgroundDrawable(getResources().getDrawable(R.drawable.edt_bg_normal));
+                        }
                         break;
 //                    case MotionEvent.ACTION_CANCEL:
 //                        v.setBackgroundDrawable(getResources().getDrawable(R.drawable.edt_bg_normal));

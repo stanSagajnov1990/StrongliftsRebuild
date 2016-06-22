@@ -17,6 +17,9 @@
     <string name="b_finish">FINISH</string>
     <string name="b_edit_exercises">EDIT EXERCISES</string>
     <string name="tv_body_weight">Body Weight</string>
+    <string name="tv_squat_exercise">Squat</string>
+    <string name="tv_ohp_exercise">Overhead Press</string>
+    <string name="tv_dl_exercise">Deadlift</string>
 
 
 </resources>
