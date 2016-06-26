@@ -16,8 +16,14 @@ public class Exercise {
     private Integer fourth;
     private Integer fifth;
 
-    public Exercise(){
+    public static final String SQUAT = "SQ";
+    public static final String BENCH_PRESS = "BP";
+    public static final String BARBELL_ROW = "ROW";
+    public static final String OVERHEAD_PRESS = "OHP";
+    public static final String DL = "DL";
 
+    public Exercise(){
+        this(UUID.randomUUID());
     }
 
     public Exercise(UUID uuid){

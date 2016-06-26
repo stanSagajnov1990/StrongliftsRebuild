@@ -64,7 +64,7 @@
             android:id="@+id/textView28"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="1"
+            android:text="0"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:gravity="center_vertical|center_horizontal"
@@ -74,11 +74,12 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
+            android:onClick="onClick"
             />
         <TextView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="1"
+            android:text="0"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:gravity="center_vertical|center_horizontal"
@@ -87,24 +88,26 @@
             android:layout_marginEnd="32dp"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/textView29"
-            android:layout_toStartOf="@+id/textView29"/>
+            android:layout_toStartOf="@+id/textView29"
+            android:onClick="onClick"/>
         <TextView
             android:id="@+id/textView29"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="1"
+            android:text="0"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:gravity="center_vertical|center_horizontal"
             android:background="@drawable/bg_red"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:onClick="onClick"
             />
         <TextView
             android:id="@+id/textView30"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="1"
+            android:text="0"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:gravity="center_vertical|center_horizontal"
@@ -113,11 +116,12 @@
             android:layout_marginEnd="34dp"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/textView39"
-            android:layout_toStartOf="@+id/textView39"/>
+            android:layout_toStartOf="@+id/textView39"
+            android:onClick="onClick"/>
         <TextView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="1"
+            android:text="0"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:gravity="center_vertical|center_horizontal"
@@ -127,7 +131,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="22dp"
-            android:id="@+id/textView39"/>
+            android:id="@+id/textView39"
+            android:onClick="onClick"/>
     </RelativeLayout>
 
     </LinearLayout>
@@ -176,7 +181,7 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -186,11 +191,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="24dp"
                 android:layout_marginStart="24dp"
-                android:id="@+id/textView31"/>
+                android:id="@+id/textView31"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -199,22 +205,24 @@
                 android:layout_toLeftOf="@+id/textView32"
                 android:layout_toStartOf="@+id/textView32"
                 android:layout_marginRight="30dp"
-                android:layout_marginEnd="30dp"/>
+                android:layout_marginEnd="30dp"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/bg_red"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/textView32"/>
+                android:id="@+id/textView32"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -224,11 +232,12 @@
                 android:layout_marginEnd="31dp"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/textView38"
-                android:layout_toStartOf="@+id/textView38"/>
+                android:layout_toStartOf="@+id/textView38"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -238,7 +247,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="22dp"
-                android:id="@+id/textView38"/>
+                android:id="@+id/textView38"
+                android:onClick="onClick"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -286,7 +296,7 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -296,11 +306,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="24dp"
                 android:layout_marginStart="24dp"
-                android:id="@+id/textView34"/>
+                android:id="@+id/textView34"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -309,22 +320,24 @@
                 android:layout_marginEnd="33dp"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/textView35"
-                android:layout_toStartOf="@+id/textView35"/>
+                android:layout_toStartOf="@+id/textView35"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/bg_red"
                 android:id="@+id/textView35"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -334,11 +347,12 @@
                 android:layout_marginEnd="32dp"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/textView37"
-                android:layout_toStartOf="@+id/textView37"/>
+                android:layout_toStartOf="@+id/textView37"
+                android:onClick="onClick"/>
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="1"
+                android:text="0"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:gravity="center_vertical|center_horizontal"
@@ -348,7 +362,8 @@
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/bg_red"
                 android:layout_marginEnd="22dp"
-                android:id="@+id/textView37"/>
+                android:id="@+id/textView37"
+                android:onClick="onClick"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -389,7 +404,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="96dp">
 
         <Button
             android:id="@+id/button_edit"
@@ -413,4 +428,14 @@
 
 
     </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:inputType="date"
+        android:id="@+id/et_date"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.stanislav.tabswithfragment;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -12,7 +13,7 @@ public class Workout {
     private UUID mId;
     private Date mDate;
     private String mBodyWeight;
-    private List<Exercise> mExercises;
+    private List<Exercise> mExercises = new ArrayList<>();
 
     public Workout() {
         this(UUID.randomUUID());
@@ -49,5 +50,9 @@ public class Workout {
 
     public void setExercises(List<Exercise> exercises) {
         mExercises = exercises;
+    }
+
+    public void addExercise(Exercise exercise){
+        mExercises.add(exercise);
     }
 }
