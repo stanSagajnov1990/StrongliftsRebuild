@@ -157,17 +157,20 @@ public class LiftingLab {
     }
 
     public List<Workout> getWorkouts() {
-//        List<Workout> crimes = new ArrayList<>();
-//
-//        CrimeCursorWrapper cursor = queryCrimes(null, null);
-//
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            crimes.add(cursor.getCrime());
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-        List<Workout> workouts = new ArrayList<Workout>();
+        List<Workout> workouts = new ArrayList<>();
+
+        SLCursorWrapper cursor = queryWorkouts(null, null, "date", null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Workout workout = cursor.getWorkout();
+            workouts.add(workout);
+            SimpleDateFormat formatter = new SimpleDateFormat();
+            Log.i("LiftingLab", formatter.format(workout.getDate()));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        //List<Workout> workouts = new ArrayList<Workout>();
 
         return workouts;
     }

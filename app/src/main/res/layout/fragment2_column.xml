@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:background="#C1C1C1"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp">
+
+        <TextView
+            android:id="@+id/tvDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elegantTextHeight="true"
+            android:text="Fri"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 Oct 2015"
+            android:textSize="12dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:background="#F5F5F5"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="1dp"
+        >
+
+        <TextView
+            android:id="@+id/tvExercise1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Squat"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvSets1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Skipped"/>
+
+        <TextView
+            android:id="@+id/tvWeight1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="47.5 kg"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:layout_marginRight="1dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvExercise2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Bench"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvSets2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="5/5/5/4/5"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <TextView
+            android:id="@+id/tvWeight2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="77.5kg"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:layout_marginRight="1dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvExercise3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Row"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvSets3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="5x5"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <TextView
+            android:id="@+id/tvWeight3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="70kg"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+    </LinearLayout>
+
+</LinearLayout>

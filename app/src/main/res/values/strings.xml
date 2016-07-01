@@ -14,11 +14,14 @@
     <string name="et_copyright">Copyright © 2007-2016 StrongLifts\nAll Rights Reserved - v2.1.17</string>
     <string name="action_deleteWorkout">Delete Workout</string>
     <string name="action_share">Share</string>
+    <string name="action_switch">Switch to Workout %s</string>
     <string name="b_finish">FINISH</string>
     <string name="b_edit_exercises">EDIT EXERCISES</string>
     <string name="tv_body_weight">Body Weight</string>
     <string name="tv_squat_exercise">Squat</string>
     <string name="tv_ohp_exercise">Overhead Press</string>
+    <string name="tv_bp_exercise">Bench Press</string>
+    <string name="tv_row_exercise">Barbell Row</string>
     <string name="tv_dl_exercise">Deadlift</string>
 
     <!-- TODO: Remove or change this placeholder text -->

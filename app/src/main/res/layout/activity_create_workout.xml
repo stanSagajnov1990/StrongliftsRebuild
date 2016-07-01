@@ -33,7 +33,7 @@
 
 
         <TextView
-            android:id="@+id/textViewSquat"
+            android:id="@+id/tvSquat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_squat_exercise"
@@ -42,7 +42,7 @@
             />
 
         <TextView
-            android:id="@+id/editTextSquat"
+            android:id="@+id/tvSquatWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edt_bg_selector"
@@ -50,7 +50,7 @@
             android:focusable="false"
             android:maxLength="20"
             android:text="5x5 97.5KG"
-            android:layout_alignBottom="@+id/textViewSquat"
+            android:layout_alignBottom="@+id/tvSquat"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
 
@@ -151,7 +151,7 @@
 
 
             <TextView
-                android:id="@+id/textViewOHP"
+                android:id="@+id/tvExercise2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_ohp_exercise"
@@ -160,7 +160,7 @@
                 />
 
             <TextView
-                android:id="@+id/editTextOHP"
+                android:id="@+id/tvExerciseWeight2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edt_bg_selector"
@@ -168,7 +168,7 @@
                 android:focusable="false"
                 android:maxLength="20"
                 android:text="5x5 50KG"
-                android:layout_alignBottom="@+id/textViewOHP"
+                android:layout_alignBottom="@+id/tvExercise2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"/>
 
@@ -266,7 +266,7 @@
 
 
             <TextView
-                android:id="@+id/textViewDL"
+                android:id="@+id/tvExercise3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_dl_exercise"
@@ -275,7 +275,7 @@
                 />
 
             <TextView
-                android:id="@+id/editTextDL"
+                android:id="@+id/tvExerciseWeight3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edt_bg_selector"
@@ -283,7 +283,7 @@
                 android:focusable="false"
                 android:maxLength="20"
                 android:text="5x5 50KG"
-                android:layout_alignBottom="@+id/textViewDL"
+                android:layout_alignBottom="@+id/tvExercise3"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"/>
 
@@ -379,7 +379,7 @@
 
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/tvBodyweight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_body_weight"
@@ -388,7 +388,7 @@
             />
 
         <TextView
-            android:id="@+id/editText"
+            android:id="@+id/tvBodyweightNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edt_bg_selector"

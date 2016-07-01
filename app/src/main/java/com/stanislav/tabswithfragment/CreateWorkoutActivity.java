@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,9 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
     private TextView editTextDL;
 
     private EditText et_date;
+    private TextView tvExercise2;
+    private TextView tvExercise3;
+    private int activeWorkout = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        TextView editText = (TextView) findViewById(R.id.editText);
+        TextView editText = (TextView) findViewById(R.id.tvBodyweightNumber);
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,9 +100,11 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             }
         });
 
-        editTextSquat = (TextView) findViewById(R.id.editTextSquat);
-        editTextOHP = (TextView) findViewById(R.id.editTextOHP);
-        editTextDL = (TextView) findViewById(R.id.editTextDL);
+        tvExercise2 = (TextView) findViewById(R.id.tvExercise2);
+        tvExercise3 = (TextView) findViewById(R.id.tvExercise3);
+        editTextSquat = (TextView) findViewById(R.id.tvSquatWeight);
+        editTextOHP = (TextView) findViewById(R.id.tvExerciseWeight2);
+        editTextDL = (TextView) findViewById(R.id.tvExerciseWeight3);
         et_date = (EditText) findViewById(R.id.et_date);
 
 
@@ -174,9 +180,10 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
                 Date date = new Date();
                 try {
                     date = sdf.parse(text);
-                } catch (ParseException e){
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                workout.setDate(date);
                 LiftingLab.get(CreateWorkoutActivity.this).addWorkout(workout);
                 Log.i(TAG, "Saved Workout");
             }
@@ -192,6 +199,9 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_create_workout, menu);
+        MenuItem item = menu.findItem(R.id.action_switch);
+        String textSwitch = getResources().getString(R.string.action_switch);
+        item.setTitle(String.format(textSwitch, "B"));
         return true;
     }
 
@@ -267,6 +277,31 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         textView.setText(String.valueOf(repitions));
         //     break;
         //}
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+
+        } else if (id == R.id.action_switch) {
+            activeWorkout = (activeWorkout + 1) % 2;
+            changeLabelsForWorkout();
+        } else {
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void changeLabelsForWorkout() {
+        if (activeWorkout == 0) {
+            tvExercise2.setText(getResources().getString(R.string.tv_ohp_exercise));
+            tvExercise3.setText(getResources().getString(R.string.tv_dl_exercise));
+        } else if (activeWorkout == 1) {
+            tvExercise2.setText(getResources().getString(R.string.tv_bp_exercise));
+            tvExercise3.setText(getResources().getString(R.string.tv_row_exercise));
+        }
     }
 }
