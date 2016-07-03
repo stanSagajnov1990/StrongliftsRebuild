@@ -69,6 +69,8 @@ public class WeightSelectorFragment extends DialogFragment {
         mEditTextWeight = (EditText) v.findViewById(R.id.editTextWeight);
         mEditTextWeight.setText(mParam1);
 
+
+
         return new AlertDialog.Builder(getActivity()).setView(v).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -79,7 +81,7 @@ public class WeightSelectorFragment extends DialogFragment {
         }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mListener.onDialogPositiveClick(WeightSelectorFragment.this);
+                mListener.onDialogNegativeClick(WeightSelectorFragment.this);
             }
         }).create();
     }
