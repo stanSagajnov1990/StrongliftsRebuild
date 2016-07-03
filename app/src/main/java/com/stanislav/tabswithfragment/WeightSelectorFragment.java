@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.util.Date;
 
@@ -69,7 +70,9 @@ public class WeightSelectorFragment extends DialogFragment {
         mEditTextWeight = (EditText) v.findViewById(R.id.editTextWeight);
         mEditTextWeight.setText(mParam1);
 
-
+        LinearLayout container = (LinearLayout) v.findViewById(R.id.barPlateContainer);
+        BarPlateView barPlateView = new BarPlateView(getContext());
+        container.addView(barPlateView, 1);
 
         return new AlertDialog.Builder(getActivity()).setView(v).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener(){
             @Override
