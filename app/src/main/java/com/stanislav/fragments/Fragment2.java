@@ -63,6 +63,8 @@ public class Fragment2 extends Fragment {
         return v;
     }
 
+    //oncreate
+
     public int getPx(int dimensionDp) {
         float density = getResources().getDisplayMetrics().density;
         return (int) (dimensionDp * density + 0.5f);

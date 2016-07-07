@@ -14,6 +14,7 @@ public class BarPlateView extends View {
     private final Rect barEdge;
     private final Rect plateOne;
     private final Rect plateTwo;
+    private final Rect plateThree;
     private Paint paint;
 
     public BarPlateView(Context context) {
@@ -24,8 +25,9 @@ public class BarPlateView extends View {
         bar = new Rect(0, 140, 220, 170);
         barEdge = new Rect(60, 120, 100, 190);
 
-        plateOne = new Rect(100,60,140,250);
-        plateTwo = new Rect(140,60,180,250);
+        plateOne = new Rect(100, 60, 130, 250);
+        plateTwo = new Rect(130, 60, 160, 250);
+        plateThree = new Rect(160, 80, 190, 230);
 
 
         // create the Paint and set its color        
@@ -48,7 +50,15 @@ public class BarPlateView extends View {
 
         Paint plateOnePaint = new Paint();
         plateOnePaint.setColor(Color.RED);
-        canvas.drawRect(plateOne,plateOnePaint);
+        canvas.drawRect(plateOne, plateOnePaint);
+
+        Paint plateTwoPaint = new Paint();
+        plateTwoPaint.setColor(Color.parseColor("#DF0101"));
+        canvas.drawRect(plateTwo, plateTwoPaint);
+
+        Paint plateThreePaint = new Paint();
+        plateThreePaint.setColor(Color.parseColor("#B40404"));
+        canvas.drawRect(plateThree, plateThreePaint);
     }
 
 }
