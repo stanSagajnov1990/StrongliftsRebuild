@@ -58,18 +58,23 @@ public class MainActivity extends AppCompatActivity implements
                 switch (tab.getPosition()) {
                     case 0:
                         tab.setIcon(R.drawable.ic_home_selected);
+                        setTitle("StrongLifts");
                         break;
                     case 1:
                         tab.setIcon(R.drawable.ic_clock_selected);
+                        setTitle("History");
                         break;
                     case 2:
                         tab.setIcon(R.drawable.ic_diagram_selected);
+                        setTitle("StrongLifts");
                         break;
                     case 3:
                         tab.setIcon(R.drawable.ic_calender_selected);
+                        setTitle("StrongLifts");
                         break;
                     case 4:
                         tab.setIcon(R.drawable.ic_playbut_selected);
+                        setTitle("Videos");
                         break;
                 }
             }

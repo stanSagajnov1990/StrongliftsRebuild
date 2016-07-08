@@ -28,7 +28,6 @@ public class Fragment2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment2_layout, container, false);
         final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) v.findViewById(R.id.horizontalScrollView);
         LinearLayout horizontalScrollView_child = (LinearLayout) v.findViewById(R.id.horizontalScrollView_child);
