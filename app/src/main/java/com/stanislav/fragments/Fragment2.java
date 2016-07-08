@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
@@ -32,7 +34,6 @@ public class Fragment2 extends Fragment {
         LinearLayout horizontalScrollView_child = (LinearLayout) v.findViewById(R.id.horizontalScrollView_child);
 
 
-
         List<Workout> workouts = LiftingLab.get(getActivity()).getWorkouts();
         for (int i = 0; i < workouts.size(); i++) {
             ViewGroup viewGroup = (ViewGroup) v.findViewById(R.id.workout_column);
@@ -42,7 +43,6 @@ public class Fragment2 extends Fragment {
 
             column.setLayoutParams(params);
             horizontalScrollView_child.addView(column);
-
 
 
             Workout workout = workouts.get(i);
@@ -63,7 +63,17 @@ public class Fragment2 extends Fragment {
         return v;
     }
 
-    //oncreate
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_fragment4, menu);
+    }
 
     public int getPx(int dimensionDp) {
         float density = getResources().getDisplayMetrics().density;
