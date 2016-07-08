@@ -304,6 +304,7 @@
                 android:background="#c0c0c0"
                 android:paddingTop="8dp"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -318,6 +319,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="12sp"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -337,6 +339,7 @@
                     />
 
             </LinearLayout>
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
@@ -346,6 +349,7 @@
                 android:background="#c0c0c0"
                 android:paddingTop="8dp"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -365,6 +369,7 @@
                     />
 
             </LinearLayout>
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
@@ -374,6 +379,7 @@
                 android:background="#c0c0c0"
                 android:paddingTop="8dp"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
