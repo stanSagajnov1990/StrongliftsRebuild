@@ -49,15 +49,27 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_workout);
 
-        UUID workoutId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
-        Log.i(TAG, "EXTRA_CRIME_ID: "+workoutId);
-        if(workoutId != null){
+        tvExercise2 = (TextView) findViewById(R.id.tvExercise2);
+        tvExercise3 = (TextView) findViewById(R.id.tvExercise3);
+        editTextSquat = (TextView) findViewById(R.id.tvSquatWeight);
+        editTextOHP = (TextView) findViewById(R.id.tvExerciseWeight2);
+        editTextDL = (TextView) findViewById(R.id.tvExerciseWeight3);
+        et_date = (EditText) findViewById(R.id.et_date);
+
+        Button saveButton = (Button) findViewById(R.id.button_save);
+        final UUID workoutId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+        Log.i(TAG, "EXTRA_CRIME_ID: " + workoutId);
+        if (workoutId != null) {
+            saveButton.setText("SAVE");
             List<Workout> workouts = LiftingLab.get(this).getWorkouts();
-            for (Workout w: workouts) {
-                if(w.getId().equals(workoutId)){
+            for (Workout w : workouts) {
+                if (w.getId().equals(workoutId)) {
                     workout = w;
                 }
             }
+
+        } else {
+            saveButton.setText("FINISH");
         }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -76,13 +88,9 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             }
         });
 
-        if(workout == null) {
-            workout = new Workout();
+        if (workout == null) {
+            workout = createWorkout();
         }
-        workout.setBodyWeight("50");
-        workout.addExercise(createExercise(Exercise.SQUAT, 50));
-        workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
-        workout.addExercise(createExercise(Exercise.DL, 100));
 
         editText.setOnTouchListener(new View.OnTouchListener() {
 
@@ -116,14 +124,9 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             }
         });
 
-        tvExercise2 = (TextView) findViewById(R.id.tvExercise2);
-        tvExercise3 = (TextView) findViewById(R.id.tvExercise3);
-        editTextSquat = (TextView) findViewById(R.id.tvSquatWeight);
-        editTextOHP = (TextView) findViewById(R.id.tvExerciseWeight2);
-        editTextDL = (TextView) findViewById(R.id.tvExerciseWeight3);
-        et_date = (EditText) findViewById(R.id.et_date);
 
-        if(workout.getDate() != null){
+        if (workout.getDate() != null) {
+            Log.i(TAG, "new workout");
             et_date.setText(DateFormatUtils.formatddMMyyyy(workout.getDate()));
         }
 
@@ -194,23 +197,51 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         });
 
 
-        Button saveButton = (Button) findViewById(R.id.button_save);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = et_date.getText().toString();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                Date date = new Date();
-                try {
-                    date = sdf.parse(text);
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                Button button = (Button) v;
+                String textButton = (String) button.getText();
+                if (textButton.equalsIgnoreCase("save")) {
+                    String text = et_date.getText().toString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                    Date date = new Date();
+                    try {
+                        date = sdf.parse(text);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    workout.setDate(date);
+                    LiftingLab.get(CreateWorkoutActivity.this).updateWorkout(workout);
+                    LiftingLab.get(CreateWorkoutActivity.this).updateExercises(workout.getExercises());
+                    Log.i(TAG, "Updated Workout");
+                } else {
+                    String text = et_date.getText().toString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                    Date date = new Date();
+                    try {
+                        date = sdf.parse(text);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    workout.setDate(date);
+                    LiftingLab liftingLab = LiftingLab.get(CreateWorkoutActivity.this);
+                    liftingLab.addWorkout(workout);
+                    liftingLab.saveExercises(workout.getExercises());
+                    Log.i(TAG, "Saved Workout");
                 }
-                workout.setDate(date);
-                LiftingLab.get(CreateWorkoutActivity.this).addWorkout(workout);
-                Log.i(TAG, "Saved Workout");
+                finish();
             }
         });
+    }
+
+    private Workout createWorkout() {
+        Workout workout = new Workout();
+        workout.setBodyWeight("50");
+        workout.addExercise(createExercise(Exercise.SQUAT, 50));
+        workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
+        workout.addExercise(createExercise(Exercise.DL, 100));
+        return workout;
     }
 
     public static Intent newIntent(Context packageContext, UUID crimeId) {
@@ -283,11 +314,11 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         String weightInText = f.format(weight);
 
         workout.getExercises().get(position).setWeight(weight);
-        if(position == 0) {
+        if (position == 0) {
             editTextSquat.setText(String.format("5x5 %sKG", weightInText));
-        } else if(position == 1) {
+        } else if (position == 1) {
             editTextOHP.setText(String.format("5x5 %sKG", weightInText));
-        } else if (position == 2){
+        } else if (position == 2) {
             editTextDL.setText(String.format("5x5 %sKG", weightInText));
         }
 
@@ -321,6 +352,9 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
 
         if (id == R.id.action_settings) {
 
+        } else if (id == R.id.action_deleteWorkout) {
+            LiftingLab.get(this).deleteWorkout(workout);
+            finish();
         } else if (id == R.id.action_switch) {
             activeWorkout = (activeWorkout + 1) % 2;
             changeLabelsForWorkout();

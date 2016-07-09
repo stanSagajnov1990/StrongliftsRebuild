@@ -28,6 +28,7 @@ public class Fragment2 extends Fragment {
     private static final String TAG = "Fragment2";
 
     private RecyclerView mWorkoutsRecyclerView;
+    private WorkoutsAdapter mAdapter;
 
     @Nullable
     @Override
@@ -39,44 +40,7 @@ public class Fragment2 extends Fragment {
         mWorkoutsRecyclerView = (RecyclerView) v.findViewById(R.id.workouts_recycler_view);
         mWorkoutsRecyclerView.setLayoutManager(layoutManager);
 
-        LiftingLab liftingLab = LiftingLab.get(getActivity());
-        List<Workout> workouts = liftingLab.getWorkouts();
-
-        WorkoutsAdapter adapter = new WorkoutsAdapter(workouts);
-        mWorkoutsRecyclerView.setAdapter(adapter);
-
-
-        /*
-        final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) v.findViewById(R.id.horizontalScrollView);
-        LinearLayout horizontalScrollView_child = (LinearLayout) v.findViewById(R.id.horizontalScrollView_child);
-
-
-        List<Workout> workouts = LiftingLab.get(getActivity()).getWorkouts();
-        for (int i = 0; i < workouts.size(); i++) {
-            ViewGroup viewGroup = (ViewGroup) v.findViewById(R.id.workout_column);
-            //View view = (LinearLayout) getResources().getLayout(R.layout.fragment2_column);
-            ViewGroup column = (ViewGroup) inflater.inflate(R.layout.fragment2_column, viewGroup, false);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(getPx(120), ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            column.setLayoutParams(params);
-            horizontalScrollView_child.addView(column);
-
-
-            Workout workout = workouts.get(i);
-            Date date = workout.getDate();
-
-
-            TextView tvDay = (TextView) column.findViewById(R.id.tvDay);
-            TextView tvDate = (TextView) column.findViewById(R.id.tvDate);
-            tvDate.setText(DateFormatUtils.format(date));
-            tvDay.setText(DateFormatUtils.getDayOfWeek(date));
-        }
-        horizontalScrollView.postDelayed(new Runnable() {
-            public void run() {
-                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-            }
-        }, 100L); */
-
+        updateUI();
         return v;
     }
 
@@ -84,6 +48,20 @@ public class Fragment2 extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    private void updateUI() {
+        LiftingLab liftingLab = LiftingLab.get(getActivity());
+        List<Workout> workouts = liftingLab.getWorkouts();
+
+        mAdapter = new WorkoutsAdapter(workouts);
+        mWorkoutsRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

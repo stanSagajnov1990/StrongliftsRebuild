@@ -56,7 +56,15 @@ public class LiftingLab {
     }
 
     public void updateWorkout(Workout workout) {
+        ContentValues values = getContentValues(workout);
+        Log.i(TAG, workout.getId().toString());
+        mDatabase.update(WorkoutTable.NAME, values, WorkoutTable.Cols.UUID+"=?", new String[]{ workout.getId().toString() });
+    }
 
+    public void deleteWorkout(Workout workout) {
+        ContentValues values = getContentValues(workout);
+        Log.i(TAG, workout.getId().toString());
+        mDatabase.delete(WorkoutTable.NAME, WorkoutTable.Cols.UUID+"=?", new String[]{ workout.getId().toString() });
     }
 
     public Workout getLatestWorkout(){
@@ -159,20 +167,38 @@ public class LiftingLab {
     public List<Workout> getWorkouts() {
         List<Workout> workouts = new ArrayList<>();
 
-        SLCursorWrapper cursor = queryWorkouts(null, null, "date", null);
+        SLCursorWrapper cursorWorkouts = queryWorkouts(null, null, "date", null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Workout workout = cursor.getWorkout();
+        cursorWorkouts.moveToFirst();
+        while (!cursorWorkouts.isAfterLast()) {
+            Workout workout = cursorWorkouts.getWorkout();
             workouts.add(workout);
             SimpleDateFormat formatter = new SimpleDateFormat();
             Log.i("LiftingLab", formatter.format(workout.getDate()));
-            cursor.moveToNext();
+            int workout_Id = cursorWorkouts.getInt(cursorWorkouts.getColumnIndex("_id"));
+
+            SLCursorWrapper cursorExercises = queryExercises(ExerciseTable.Cols.WORKOUT_FK+" = "+workout_Id, null, null, null);
+            List<Exercise> exercises = new ArrayList<>();
+            cursorExercises.moveToFirst();
+            while(!cursorExercises.isAfterLast()){
+                exercises.add(cursorExercises.getExercise());
+                cursorExercises.moveToNext();
+            }
+            cursorExercises.close();
+            workout.setExercises(exercises);
+            cursorWorkouts.moveToNext();
         }
-        cursor.close();
-        //List<Workout> workouts = new ArrayList<Workout>();
+        cursorWorkouts.close();
+
 
         return workouts;
     }
 
+    public void updateExercises(List<Exercise> exercises) {
+
+    }
+
+    public void saveExercises(List<Exercise> exercises) {
+
+    }
 }
