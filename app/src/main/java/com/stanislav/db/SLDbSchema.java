@@ -14,6 +14,7 @@ public class SLDbSchema {
             public static final String DATE = "date";
             public static final String BODY_WEIGHT = "body_weight";
             public static final String FAILED = "failed";
+            public static final String TYPE = "type";
         }
     }
 

@@ -21,6 +21,8 @@ import com.stanislav.tabswithfragment.R;
 import com.stanislav.tabswithfragment.Workout;
 import com.stanislav.utils.DateFormatUtils;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class Fragment2 extends Fragment {
@@ -79,6 +81,11 @@ public class Fragment2 extends Fragment {
 
         private final TextView mTvDate;
         private final TextView mTvDay;
+        private final TextView mTvExerciseWeight2;
+        private final TextView mTvExerciseWeight3;
+        private final TextView mTvExerciseWeight1;
+        private final TextView mTvExercise2;
+        private final TextView mTvExercise3;
 
         private Workout mWorkout;
 
@@ -89,12 +96,21 @@ public class Fragment2 extends Fragment {
             mTvDay = (TextView) itemView.findViewById(R.id.tvDay);
             mTvDate = (TextView) itemView.findViewById(R.id.tvDate);
 
+            mTvExercise2 = (TextView) itemView.findViewById(R.id.tvExercise2);
+            mTvExercise3 = (TextView) itemView.findViewById(R.id.tvExercise3);
+
+            mTvExerciseWeight1 = (TextView) itemView.findViewById(R.id.tvWeight1);
+            mTvExerciseWeight2 = (TextView) itemView.findViewById(R.id.tvWeight2);
+            mTvExerciseWeight3 = (TextView) itemView.findViewById(R.id.tvWeight3);
         }
 
         public void bindWorkout(Workout workout){
             mWorkout = workout;
             mTvDay.setText(DateFormatUtils.getDayOfWeek(workout.getDate()));
             mTvDate.setText(DateFormatUtils.formatdMMMyyyy(workout.getDate()));
+            mTvExerciseWeight1.setText(workout.getExercises().get(0).getWeight().toString());
+            mTvExerciseWeight2.setText(workout.getExercises().get(1).getWeight().toString());
+            mTvExerciseWeight3.setText(workout.getExercises().get(2).getWeight().toString());
         }
 
         @Override

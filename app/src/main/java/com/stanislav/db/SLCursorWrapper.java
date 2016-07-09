@@ -26,9 +26,11 @@ public class SLCursorWrapper extends CursorWrapper {
         String uuidString = getString(getColumnIndex(WorkoutTable.Cols.UUID));
         long date = getLong(getColumnIndex(WorkoutTable.Cols.DATE));
         String bodyWeight = getString(getColumnIndex(WorkoutTable.Cols.BODY_WEIGHT));
+        String type = getString(getColumnIndex(WorkoutTable.Cols.TYPE));
 
         Workout workout = new Workout(UUID.fromString(uuidString));
         workout.setId(id);
+        workout.setType(type);
         workout.setDate(new Date(date));
         workout.setBodyWeight(bodyWeight);
 

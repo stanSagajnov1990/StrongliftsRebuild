@@ -15,6 +15,7 @@ public class Workout {
     private Date mDate;
     private String mBodyWeight;
     private List<Exercise> mExercises = new ArrayList<>();
+    private String mType;
 
     public Workout() {
         this(UUID.randomUUID());
@@ -64,5 +65,13 @@ public class Workout {
 
     public void addExercise(Exercise exercise) {
         mExercises.add(exercise);
+    }
+
+    public String getType() {
+        return mType;
+    }
+
+    public void setType(String type) {
+        mType = type;
     }
 }

@@ -89,6 +89,7 @@ public class LiftingLab {
     public void deleteWorkout(Workout workout) {
         ContentValues values = getContentValues(workout);
         Log.i(TAG, workout.getUuid().toString());
+        mDatabase.delete(ExerciseTable.NAME, ExerciseTable.Cols.WORKOUT_FK+"=?", new String[]{ String.valueOf(workout.getId()) });
         mDatabase.delete(WorkoutTable.NAME, WorkoutTable.Cols.UUID + "=?", new String[]{workout.getUuid().toString()});
     }
 
