@@ -45,17 +45,19 @@ public class SLBaseHelper extends SQLiteOpenHelper {
                 ExerciseTable.Cols.FOURTH + ", " +
                 ExerciseTable.Cols.FIFTH + ", " +
                 ExerciseTable.Cols.WORKOUT_FK+ ", " +
-                "FOREIGN KEY(" + ExerciseTable.Cols.WORKOUT_FK + ") REFERENCES workouts(_id)"+
+                "FOREIGN KEY(" + ExerciseTable.Cols.WORKOUT_FK + ") REFERENCES workouts(uuid)"+
                 ")"
         );
         UUID uuid = UUID.randomUUID();
         db.execSQL("insert into "+WorkoutTable.NAME +" values(NULL, ?, CURRENT_DATE, 98, 0)", new Object[]{ uuid.toString() });
         Object[] argsForExercise = new Object[2];
-        argsForExercise[0] = uuid.toString();
+        argsForExercise[0] = UUID.randomUUID().toString();
         argsForExercise[1] = 1;
         db.execSQL("insert into "+ExerciseTable.NAME+ " values(NULL, ? , 'SQ', 47.5, 5, 5, 5, 5, 5, ?)", argsForExercise);
+        argsForExercise[0] = UUID.randomUUID().toString();
         argsForExercise[1] = 1;
         db.execSQL("insert into "+ExerciseTable.NAME+ " values(NULL, ? , 'BP', 77.5, 5, 5, 5, 5, 5, ?)", argsForExercise);
+        argsForExercise[0] = UUID.randomUUID().toString();
         argsForExercise[1] = 1;
         db.execSQL("insert into "+ExerciseTable.NAME+ " values(NULL, ? , 'ROW', 70, 5, 5, 5, 5, 5, ?)", argsForExercise);
     }

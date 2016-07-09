@@ -63,7 +63,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             saveButton.setText("SAVE");
             List<Workout> workouts = LiftingLab.get(this).getWorkouts();
             for (Workout w : workouts) {
-                if (w.getId().equals(workoutId)) {
+                if (w.getUuid().equals(workoutId)) {
                     workout = w;
                 }
             }
@@ -91,6 +91,12 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         if (workout == null) {
             workout = createWorkout();
         }
+        if(workout.getExercises().isEmpty()) {
+            //workout.addExercise(createExercise(Exercise.SQUAT, 50));
+            //workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
+            //workout.addExercise(createExercise(Exercise.DL, 100));
+        }
+
 
         editText.setOnTouchListener(new View.OnTouchListener() {
 
@@ -213,7 +219,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
                     }
                     workout.setDate(date);
                     LiftingLab.get(CreateWorkoutActivity.this).updateWorkout(workout);
-                    LiftingLab.get(CreateWorkoutActivity.this).updateExercises(workout.getExercises());
+                    LiftingLab.get(CreateWorkoutActivity.this).updateExercises(workout);
                     Log.i(TAG, "Updated Workout");
                 } else {
                     String text = et_date.getText().toString();
@@ -227,7 +233,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
                     workout.setDate(date);
                     LiftingLab liftingLab = LiftingLab.get(CreateWorkoutActivity.this);
                     liftingLab.addWorkout(workout);
-                    liftingLab.saveExercises(workout.getExercises());
+                    liftingLab.saveExercises(workout);
                     Log.i(TAG, "Saved Workout");
                 }
                 finish();

@@ -100,7 +100,7 @@ public class Fragment2 extends Fragment {
         @Override
         public void onClick(View v) {
             Log.i(TAG, "this item selected");
-            Intent intent = CreateWorkoutActivity.newIntent(getActivity(), mWorkout.getId());
+            Intent intent = CreateWorkoutActivity.newIntent(getActivity(), mWorkout.getUuid());
             startActivity(intent);
         }
     }

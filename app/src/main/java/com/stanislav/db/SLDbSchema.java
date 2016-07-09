@@ -9,6 +9,7 @@ public class SLDbSchema {
         public static final String NAME = "workouts";
 
         public static final class Cols {
+            public static final String _id = "_id";
             public static final String UUID = "uuid";
             public static final String DATE = "date";
             public static final String BODY_WEIGHT = "body_weight";

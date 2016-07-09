@@ -43,31 +43,56 @@ public class LiftingLab {
 
     private static ContentValues getContentValues(Workout w) {
         ContentValues values = new ContentValues();
-        values.put(WorkoutTable.Cols.UUID, w.getId().toString());
+        values.put(WorkoutTable.Cols.UUID, w.getUuid().toString());
         values.put(WorkoutTable.Cols.DATE, w.getDate().getTime());
         values.put(WorkoutTable.Cols.BODY_WEIGHT, w.getBodyWeight());
 
         return values;
     }
 
+    private static ContentValues getContentValues(Exercise e, int workoutId) {
+        ContentValues values = new ContentValues();
+        values.put(ExerciseTable.Cols.UUID, e.getId().toString());
+        values.put(ExerciseTable.Cols.TYPE, e.getType());
+        values.put(ExerciseTable.Cols.WEIGHT, e.getWeight());
+        values.put(ExerciseTable.Cols.FIRST, e.getFirst());
+        values.put(ExerciseTable.Cols.SECOND, e.getSecond());
+        values.put(ExerciseTable.Cols.THIRD, e.getThird());
+        values.put(ExerciseTable.Cols.FOURTH, e.getFourth());
+        values.put(ExerciseTable.Cols.FIFTH, e.getFifth());
+        values.put(ExerciseTable.Cols.WORKOUT_FK, workoutId);
+
+        return values;
+    }
+
     public void addWorkout(Workout workout) {
         ContentValues values = getContentValues(workout);
-        mDatabase.insert(WorkoutTable.NAME, null, values);
+        int workoutId = (int) mDatabase.insert(WorkoutTable.NAME, null, values);
+
+        for (Exercise exercise : workout.getExercises()) {
+            ContentValues valuesExercise = getContentValues(exercise, workoutId);
+            mDatabase.insert(ExerciseTable.NAME, null, valuesExercise);
+        }
     }
 
     public void updateWorkout(Workout workout) {
         ContentValues values = getContentValues(workout);
-        Log.i(TAG, workout.getId().toString());
-        mDatabase.update(WorkoutTable.NAME, values, WorkoutTable.Cols.UUID+"=?", new String[]{ workout.getId().toString() });
+        Log.i(TAG, workout.getUuid().toString());
+        mDatabase.update(WorkoutTable.NAME, values, WorkoutTable.Cols.UUID + "=?", new String[]{workout.getUuid().toString()});
+
+        for (Exercise exercise : workout.getExercises()) {
+            ContentValues valuesExercise = getContentValues(exercise, workout.getId());
+            mDatabase.update(ExerciseTable.NAME, valuesExercise, ExerciseTable.Cols.UUID + "=?", new String[]{exercise.getId().toString()});
+        }
     }
 
     public void deleteWorkout(Workout workout) {
         ContentValues values = getContentValues(workout);
-        Log.i(TAG, workout.getId().toString());
-        mDatabase.delete(WorkoutTable.NAME, WorkoutTable.Cols.UUID+"=?", new String[]{ workout.getId().toString() });
+        Log.i(TAG, workout.getUuid().toString());
+        mDatabase.delete(WorkoutTable.NAME, WorkoutTable.Cols.UUID + "=?", new String[]{workout.getUuid().toString()});
     }
 
-    public Workout getLatestWorkout(){
+    public Workout getLatestWorkout() {
         List<Workout> workouts = new ArrayList<Workout>();
         SLCursorWrapper cursor = queryWorkouts(null, null, "date desc", "1");
 
@@ -79,15 +104,15 @@ public class LiftingLab {
         cursor.close();
 
         String[] whereArgs = new String[1];
-        whereArgs[0] = workout.getId().toString();
+        whereArgs[0] = workout.getUuid().toString();
 //        cursor = queryExercises(ExerciseTable.Cols.WORKOUT_FK+" LIKE '"+ workout.getId().toString()+"' ", null, null, null);
-        cursor = queryExercises(ExerciseTable.Cols.WORKOUT_FK+" = "+workout_Id, null, null, null);
+        cursor = queryExercises(ExerciseTable.Cols.WORKOUT_FK + " = " + workout_Id, null, null, null);
 //        cursor = queryExercises(null, null, null, null);
 
 
         List<Exercise> exercises = new ArrayList<>();
         cursor.moveToFirst();
-        while(!cursor.isAfterLast()){
+        while (!cursor.isAfterLast()) {
             exercises.add(cursor.getExercise());
             cursor.moveToNext();
         }
@@ -177,10 +202,10 @@ public class LiftingLab {
             Log.i("LiftingLab", formatter.format(workout.getDate()));
             int workout_Id = cursorWorkouts.getInt(cursorWorkouts.getColumnIndex("_id"));
 
-            SLCursorWrapper cursorExercises = queryExercises(ExerciseTable.Cols.WORKOUT_FK+" = "+workout_Id, null, null, null);
+            SLCursorWrapper cursorExercises = queryExercises(ExerciseTable.Cols.WORKOUT_FK + " = " + workout_Id, null, null, null);
             List<Exercise> exercises = new ArrayList<>();
             cursorExercises.moveToFirst();
-            while(!cursorExercises.isAfterLast()){
+            while (!cursorExercises.isAfterLast()) {
                 exercises.add(cursorExercises.getExercise());
                 cursorExercises.moveToNext();
             }
@@ -194,11 +219,11 @@ public class LiftingLab {
         return workouts;
     }
 
-    public void updateExercises(List<Exercise> exercises) {
+    public void updateExercises(Workout workout) {
 
     }
 
-    public void saveExercises(List<Exercise> exercises) {
+    public void saveExercises(Workout workout) {
 
     }
 }

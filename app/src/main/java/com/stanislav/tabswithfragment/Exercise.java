@@ -15,6 +15,7 @@ public class Exercise {
     private Integer third;
     private Integer fourth;
     private Integer fifth;
+    private Integer workout_id;
 
     public static final String SQUAT = "SQ";
     public static final String BENCH_PRESS = "BP";
@@ -92,5 +93,13 @@ public class Exercise {
 
     public void setFifth(Integer fifth) {
         this.fifth = fifth;
+    }
+
+    public Integer getWorkout_id() {
+        return workout_id;
+    }
+
+    public void setWorkout_id(Integer workout_id) {
+        this.workout_id = workout_id;
     }
 }

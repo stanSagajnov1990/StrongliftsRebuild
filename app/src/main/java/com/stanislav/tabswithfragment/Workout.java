@@ -10,7 +10,8 @@ import java.util.UUID;
  */
 public class Workout {
 
-    private UUID mId;
+    private int id;
+    private UUID mUuId;
     private Date mDate;
     private String mBodyWeight;
     private List<Exercise> mExercises = new ArrayList<>();
@@ -20,12 +21,21 @@ public class Workout {
     }
 
     public Workout(UUID id) {
-        mId = id;
+        mUuId = id;
         mDate = new Date();
     }
 
-    public UUID getId() {
-        return mId;
+    public int getId() {
+        return this.id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public UUID getUuid() {
+        return mUuId;
     }
 
     public Date getDate() {
@@ -44,7 +54,7 @@ public class Workout {
         mBodyWeight = bodyWeight;
     }
 
-    public List<Exercise> getExercises(){
+    public List<Exercise> getExercises() {
         return mExercises;
     }
 
@@ -52,7 +62,7 @@ public class Workout {
         mExercises = exercises;
     }
 
-    public void addExercise(Exercise exercise){
+    public void addExercise(Exercise exercise) {
         mExercises.add(exercise);
     }
 }
