@@ -50,7 +50,7 @@ public class SLBaseHelper extends SQLiteOpenHelper {
                 ")"
         );
         UUID uuid = UUID.randomUUID();
-        db.execSQL("insert into "+WorkoutTable.NAME +" values(NULL, ?, CURRENT_DATE, 98, 'A', 0)", new Object[]{ uuid.toString() });
+        db.execSQL("insert into "+WorkoutTable.NAME +" values(NULL, ?, date('now'), 98, 'A', 0)", new Object[]{ uuid.toString() });
         Object[] argsForExercise = new Object[2];
         argsForExercise[0] = UUID.randomUUID().toString();
         argsForExercise[1] = 1;

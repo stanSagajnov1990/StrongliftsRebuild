@@ -21,8 +21,6 @@ import android.widget.TextView;
 import com.stanislav.utils.DateFormatUtils;
 
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -79,6 +77,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         ab.setDisplayHomeAsUpEnabled(true);
 
         TextView editText = (TextView) findViewById(R.id.tvBodyweightNumber);
+        assert editText != null;
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,12 +90,6 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         if (workout == null) {
             workout = createWorkout();
         }
-        if (workout.getExercises().isEmpty()) {
-            //workout.addExercise(createExercise(Exercise.SQUAT, 50));
-            //workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
-            //workout.addExercise(createExercise(Exercise.DL, 100));
-        }
-
 
         editText.setOnTouchListener(new View.OnTouchListener() {
 
@@ -210,30 +203,18 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
                 String textButton = (String) button.getText();
                 if (textButton.equalsIgnoreCase("save")) {
                     String text = et_date.getText().toString();
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                    Date date = new Date();
-                    try {
-                        date = sdf.parse(text);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    Date date = DateFormatUtils.parseddMMyyyy(text);
+                    date = date != null ? date : new Date();
                     workout.setDate(date);
                     LiftingLab.get(CreateWorkoutActivity.this).updateWorkout(workout);
-                    LiftingLab.get(CreateWorkoutActivity.this).updateExercises(workout);
                     Log.i(TAG, "Updated Workout");
                 } else {
                     String text = et_date.getText().toString();
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                    Date date = new Date();
-                    try {
-                        date = sdf.parse(text);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    Date date = DateFormatUtils.parseddMMyyyy(text);
+                    date = date != null ? date : new Date();
                     workout.setDate(date);
                     LiftingLab liftingLab = LiftingLab.get(CreateWorkoutActivity.this);
                     liftingLab.addWorkout(workout);
-                    liftingLab.saveExercises(workout);
                     Log.i(TAG, "Saved Workout");
                 }
                 finish();

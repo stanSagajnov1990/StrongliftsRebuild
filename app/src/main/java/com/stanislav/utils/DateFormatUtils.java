@@ -1,5 +1,6 @@
 package com.stanislav.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -24,4 +25,14 @@ public class DateFormatUtils {
         return formatter.format(date);
     }
 
+    public static Date parseddMMyyyy(String text) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf.parse(text);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -7,11 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.stanislav.db.SLBaseHelper;
-
 import com.stanislav.db.SLCursorWrapper;
-import com.stanislav.db.SLDbSchema;
-import com.stanislav.db.SLDbSchema.WorkoutTable;
 import com.stanislav.db.SLDbSchema.ExerciseTable;
+import com.stanislav.db.SLDbSchema.WorkoutTable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -107,10 +105,7 @@ public class LiftingLab {
 
         String[] whereArgs = new String[1];
         whereArgs[0] = workout.getUuid().toString();
-//        cursor = queryExercises(ExerciseTable.Cols.WORKOUT_FK+" LIKE '"+ workout.getId().toString()+"' ", null, null, null);
         cursor = queryExercises(ExerciseTable.Cols.WORKOUT_FK + " = " + workout_Id, null, null, null);
-//        cursor = queryExercises(null, null, null, null);
-
 
         List<Exercise> exercises = new ArrayList<>();
         cursor.moveToFirst();
@@ -122,43 +117,9 @@ public class LiftingLab {
         workout.setExercises(exercises);
 
         return workout;
-
-        /*while(!cursor.isAfterLast()) {
-            workouts.add(cursor.getWorkout());
-
-            if(maxDate == null){
-                maxDate = cursor.getWorkout().getDate();
-            }
-            if(cursor.getWorkout().getDate().after(maxDate)){
-                maxDate = cursor.getWorkout().getDate();
-            }
-
-            cursor.moveToNext();
-        }
-        cursor.close();
-
-        for(Workout workout : workouts) {
-            if(workout.getDate().compareTo(maxDate) == 0){
-                Log.i(TAG, "found latest workout");
-                SimpleDateFormat sdf  = new SimpleDateFormat();
-                Log.i(TAG, "latest workout" + sdf.format(workout.getDate()));
-                return workout;
-            }
-        }
-
-        return null;*/
     }
 
     private SLCursorWrapper queryWorkouts(String whereClause, String[] whereArgs) {
-        /*Cursor cursor = mDatabase.query(
-                WorkoutTable.NAME,
-                null, // Columns - null selects all columns
-                whereClause,
-                whereArgs,
-                null, // groupBy
-                null, // having
-                null  // orderBy
-        );*/
         return queryWorkouts(whereClause, whereArgs, null, null);
     }
 

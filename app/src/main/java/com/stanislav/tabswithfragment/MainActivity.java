@@ -113,69 +113,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        i++;
-
-        initViewPager();
-        initTabHost();
-    }
-
-    private void initTabHost() {
-//        tabHost = new TabHost(getApplicationContext());
-        tabHost = (TabHost) findViewById(android.R.id.tabhost);
-        tabHost.setup();
-
-        Resources res = getResources();
-        String[] tabNames = {"1", "2", "3", "4", "5"};
-        for (int i = 0; i < tabNames.length; i++) {
-            TabHost.TabSpec tabSpec;
-            tabSpec = tabHost.newTabSpec(tabNames[i]);
-            tabSpec.setIndicator(tabNames[i]);
-            tabSpec.setIndicator("", res.getDrawable(R.drawable.ic_guidebook));
-            tabSpec.setContent(new FakeContent(getApplicationContext()));
-            tabHost.addTab(tabSpec);
-        }
-        tabHost.setOnTabChangedListener(this);
-    }
-
-    public class FakeContent implements TabContentFactory {
-
-        Context mContext;
-
-        public FakeContent(Context context) {
-            mContext = context;
-        }
-
-        @Override
-        public View createTabContent(String tag) {
-            View fakeView = new View(mContext);
-            fakeView.setMinimumHeight(0);
-            fakeView.setMinimumWidth(0);
-            return fakeView;
-        }
-    }
-
-    private void initViewPager() {
-
-        List<Fragment> listFragments = new ArrayList<Fragment>();
-        listFragments.add(new Fragment1());
-        listFragments.add(new Fragment2());
-        listFragments.add(new Fragment3());
-        listFragments.add(new Fragment4());
-        listFragments.add(new Fragment5());
-
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), listFragments);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        viewPager.setAdapter(myFragmentPagerAdapter);
-        viewPager.addOnPageChangeListener(this);
-
-        onRestart();
-    } */
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
