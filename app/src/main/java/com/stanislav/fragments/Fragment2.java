@@ -108,6 +108,15 @@ public class Fragment2 extends Fragment {
             mWorkout = workout;
             mTvDay.setText(DateFormatUtils.getDayOfWeek(workout.getDate()));
             mTvDate.setText(DateFormatUtils.formatdMMMyyyy(workout.getDate()));
+
+            if(workout.getType().equalsIgnoreCase("A")) {
+                mTvExercise2.setText(getString(R.string.tv_bp_exercise_short));
+                mTvExercise3.setText(getString(R.string.tv_row_exercise_short));
+            } else {
+                mTvExercise2.setText(getString(R.string.tv_ohp_exercise_short));
+                mTvExercise3.setText(getString(R.string.tv_dl_exercise_short));
+            }
+
             mTvExerciseWeight1.setText(workout.getExercises().get(0).getWeight().toString());
             mTvExerciseWeight2.setText(workout.getExercises().get(1).getWeight().toString());
             mTvExerciseWeight3.setText(workout.getExercises().get(2).getWeight().toString());

@@ -25,6 +25,11 @@
     <string name="tv_bp_exercise">Bench Press</string>
     <string name="tv_row_exercise">Barbell Row</string>
     <string name="tv_dl_exercise">Deadlift</string>
+    <string name="tv_squat_exercise_short">Squat</string>
+    <string name="tv_ohp_exercise_short">OH Press</string>
+    <string name="tv_bp_exercise_short">Bench</string>
+    <string name="tv_row_exercise_short">Row</string>
+    <string name="tv_dl_exercise_short">Deadlift</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

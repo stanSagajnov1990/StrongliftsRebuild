@@ -46,6 +46,7 @@ public class LiftingLab {
         values.put(WorkoutTable.Cols.UUID, w.getUuid().toString());
         values.put(WorkoutTable.Cols.DATE, w.getDate().getTime());
         values.put(WorkoutTable.Cols.BODY_WEIGHT, w.getBodyWeight());
+        values.put(WorkoutTable.Cols.TYPE, w.getType());
 
         return values;
     }

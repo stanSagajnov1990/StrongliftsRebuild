@@ -42,7 +42,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
     private EditText et_date;
     private TextView tvExercise2;
     private TextView tvExercise3;
-    private int activeWorkout = 0;
+    private int activeWorkout = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         if (workout == null) {
             workout = createWorkout();
         }
-        if(workout.getExercises().isEmpty()) {
+        if (workout.getExercises().isEmpty()) {
             //workout.addExercise(createExercise(Exercise.SQUAT, 50));
             //workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
             //workout.addExercise(createExercise(Exercise.DL, 100));
@@ -244,6 +244,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
     private Workout createWorkout() {
         Workout workout = new Workout();
         workout.setBodyWeight("50");
+        workout.setType("A");
         workout.addExercise(createExercise(Exercise.SQUAT, 50));
         workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
         workout.addExercise(createExercise(Exercise.DL, 100));
@@ -363,7 +364,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             finish();
         } else if (id == R.id.action_switch) {
             activeWorkout = (activeWorkout + 1) % 2;
-            changeLabelsForWorkout();
+            changeLabelsForWorkout(item);
         } else {
 
         }
@@ -371,13 +372,18 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         return super.onOptionsItemSelected(item);
     }
 
-    private void changeLabelsForWorkout() {
+    private void changeLabelsForWorkout(MenuItem item) {
+        String itemText = getString(R.string.action_switch);
         if (activeWorkout == 0) {
+            workout.setType("B");
             tvExercise2.setText(getResources().getString(R.string.tv_ohp_exercise));
             tvExercise3.setText(getResources().getString(R.string.tv_dl_exercise));
+            item.setTitle(String.format(itemText, "A"));
         } else if (activeWorkout == 1) {
+            workout.setType("A");
             tvExercise2.setText(getResources().getString(R.string.tv_bp_exercise));
             tvExercise3.setText(getResources().getString(R.string.tv_row_exercise));
+            item.setTitle(String.format(itemText, "B"));
         }
     }
 }
