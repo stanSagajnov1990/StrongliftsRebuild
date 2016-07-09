@@ -1,24 +1,31 @@
 package com.stanislav.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.stanislav.tabswithfragment.CreateWorkoutActivity;
 import com.stanislav.tabswithfragment.LiftingLab;
 import com.stanislav.tabswithfragment.R;
 import com.stanislav.tabswithfragment.Workout;
+import com.stanislav.utils.DateFormatUtils;
 
 import java.util.List;
 
 public class Fragment2 extends Fragment {
+
+    private static final String TAG = "Fragment2";
 
     private RecyclerView mWorkoutsRecyclerView;
 
@@ -92,22 +99,31 @@ public class Fragment2 extends Fragment {
 
     private class WorkoutsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private final TextView mTvDate;
+        private final TextView mTvDay;
+
         private Workout mWorkout;
 
         public WorkoutsHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 
+            mTvDay = (TextView) itemView.findViewById(R.id.tvDay);
+            mTvDate = (TextView) itemView.findViewById(R.id.tvDate);
 
         }
 
         public void bindWorkout(Workout workout){
             mWorkout = workout;
+            mTvDay.setText(DateFormatUtils.getDayOfWeek(workout.getDate()));
+            mTvDate.setText(DateFormatUtils.formatdMMMyyyy(workout.getDate()));
         }
 
         @Override
         public void onClick(View v) {
-
+            Log.i(TAG, "this item selected");
+            Intent intent = CreateWorkoutActivity.newIntent(getActivity(), mWorkout.getId());
+            startActivity(intent);
         }
     }
 

@@ -22,12 +22,13 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class CreateWorkoutActivity extends AppCompatActivity implements WeightSelectorFragment.NoticeDialogListener {
 
     private static final String EXTRA_CRIME_ID =
-            "com.bignerdranch.android.criminalintent.crime_id";
+            "com.stanislav.tabswithfragment.workout_id";
     private Workout workout;
 
     private static final String TAG = "CreateWorkoutActivity";
@@ -45,6 +46,17 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_workout);
+
+        UUID workoutId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+        Log.i(TAG, "EXTRA_CRIME_ID: "+workoutId);
+        if(workoutId != null){
+            List<Workout> workouts = LiftingLab.get(this).getWorkouts();
+            for (Workout w: workouts) {
+                if(w.getId().equals(workoutId)){
+                    //workoutId
+                }
+            }
+        }
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

@@ -14,7 +14,7 @@ public class DateFormatUtils {
         return formatter.format(date);
     }
 
-    public static String format(Date date){
+    public static String formatdMMMyyyy(Date date){
         SimpleDateFormat formatter = new SimpleDateFormat("d MMM yyyy", Locale.US);
         return formatter.format(date);
     }
