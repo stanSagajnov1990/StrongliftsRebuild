@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.stanislav.utils.DateFormatUtils;
+
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,7 +55,7 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             List<Workout> workouts = LiftingLab.get(this).getWorkouts();
             for (Workout w: workouts) {
                 if(w.getId().equals(workoutId)){
-                    //workoutId
+                    workout = w;
                 }
             }
         }
@@ -74,7 +76,9 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
             }
         });
 
-        workout = new Workout();
+        if(workout == null) {
+            workout = new Workout();
+        }
         workout.setBodyWeight("50");
         workout.addExercise(createExercise(Exercise.SQUAT, 50));
         workout.addExercise(createExercise(Exercise.OVERHEAD_PRESS, 75));
@@ -119,6 +123,13 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
         editTextDL = (TextView) findViewById(R.id.tvExerciseWeight3);
         et_date = (EditText) findViewById(R.id.et_date);
 
+        if(workout.getDate() != null){
+            et_date.setText(DateFormatUtils.formatddMMyyyy(workout.getDate()));
+        }
+
+        updateWeightTV(0, workout.getExercises().get(0).getWeight());
+        updateWeightTV(1, workout.getExercises().get(1).getWeight());
+        updateWeightTV(2, workout.getExercises().get(2).getWeight());
 
 //        editTextSquat.setOnTouchListener(new View.OnTouchListener() {
 //
@@ -251,22 +262,35 @@ public class CreateWorkoutActivity extends AppCompatActivity implements WeightSe
                 editTextSquat.setText(String.format("5x5 %sKG", weightInText));
                 break;
             case WeightSelectorFragment.BENCH_PRESS:
-                workout.getExercises().get(1).setWeight(weight);
-                editTextOHP.setText(String.format("5x5 %sKG", weightInText));
+                updateWeightTV(1, weight);
                 break;
             case WeightSelectorFragment.BARBELL_ROW:
                 workout.getExercises().get(2).setWeight(weight);
                 editTextDL.setText(String.format("5x5 %sKG", weightInText));
                 break;
             case WeightSelectorFragment.OVERHEAD_PRESS:
-                workout.getExercises().get(1).setWeight(weight);
-                editTextDL.setText(String.format("5x5 %sKG", weightInText));
+                updateWeightTV(1, weight);
                 break;
             case WeightSelectorFragment.DEADLIFT:
                 workout.getExercises().get(2).setWeight(weight);
                 editTextDL.setText(String.format("5x5 %sKG", weightInText));
                 break;
         }
+    }
+
+    private void updateWeightTV(int position, double weight) {
+        DecimalFormat f = new DecimalFormat("0.##");
+        String weightInText = f.format(weight);
+
+        workout.getExercises().get(position).setWeight(weight);
+        if(position == 0) {
+            editTextSquat.setText(String.format("5x5 %sKG", weightInText));
+        } else if(position == 1) {
+            editTextOHP.setText(String.format("5x5 %sKG", weightInText));
+        } else if (position == 2){
+            editTextDL.setText(String.format("5x5 %sKG", weightInText));
+        }
+
     }
 
     @Override

@@ -19,4 +19,9 @@ public class DateFormatUtils {
         return formatter.format(date);
     }
 
+    public static String formatddMMyyyy(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
+        return formatter.format(date);
+    }
+
 }
