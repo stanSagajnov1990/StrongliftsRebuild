@@ -40,5 +40,7 @@
     <string name="settings_export">Export</string>
     <string name="settings_restore">Restore</string>
     <string name="settings_reset">Reset</string>
+    <string name="li_workout_a">Workout A</string>
+    <string name="li_workout_b">Workout B</string>
 
 </resources>

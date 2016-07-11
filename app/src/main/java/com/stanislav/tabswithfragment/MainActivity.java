@@ -1,14 +1,17 @@
 package com.stanislav.tabswithfragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.stanislav.adapters.PagerAdapter;
+
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +25,7 @@ import com.stanislav.adapters.MyFragmentPagerAdapter;
 public class MainActivity extends AppCompatActivity implements
         OnTabChangeListener, OnPageChangeListener {
 
+    private static final String TAG = "MainActivity";
     private ViewPager viewPager;
     private TabHost tabHost;
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
@@ -123,11 +127,11 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings){
+        if (id == R.id.action_settings) {
             //return true;
             Intent i = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(i);
-        } else if(id == R.id.action_help){
+        } else if (id == R.id.action_help) {
             Intent i = new Intent(MainActivity.this, HelpActivity.class);
             startActivity(i);
         }
@@ -160,6 +164,21 @@ public class MainActivity extends AppCompatActivity implements
         int scrollPos = tabView.getLeft()
                 - (hScrollView.getWidth() - tabView.getWidth()) / 2;
         hScrollView.smoothScrollTo(scrollPos, 0);*/
+    }
+
+    public void startYoutube(View v) {
+        Log.i(TAG, "startYoutube clicked");
+
+        ;
+
+        switch (v.getId()) {
+            case R.id.container_workout_a:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=EP2g3Sj3qSw")));
+                break;
+            case R.id.container_workout_b:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=ro3Mh9o7JPU")));
+                break;
+        }
     }
 
 }
